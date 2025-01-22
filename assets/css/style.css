@@ -77,3 +77,15 @@ footer {
 [data-theme="dark"] .toggle-circle {
     transform: translateX(25px);
 }
+
+/* === Reusable Components === */
+.centered-text {
+    max-width: 600px;     /* Restrict the width */
+    margin: 0 auto;       /* Center horizontally */
+    text-align: justify;  /* Justify text alignment */
+    line-height: 1.6;     /* Add line spacing for readability */
+    padding: 20px;        /* Add padding for better spacing */
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    border-radius: 8px;   /* Optional rounded corners */
+}
