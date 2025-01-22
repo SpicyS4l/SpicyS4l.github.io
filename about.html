@@ -6,71 +6,64 @@
   <title>About</title>
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
-    body {
+    /* Additional styling for alignment */
+    .header-container {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        text-align: justify;
-        height: 100vh;
-        margin: 0;
-    }
-
-    header {
         width: 100%;
+        padding: 0 20px;
+    }
+
+    .toggle-container {
         display: flex;
-        flex-direction: column;
         align-items: center;
-    }
-
-    .hamburger {
-        display: flex;
-        flex-direction: column;
         cursor: pointer;
-        margin: 10px 0;
     }
 
-    .hamburger div {
-        width: 30px;
-        height: 3px;
-        background-color: var(--text-color);
-        margin: 4px 0;
-        transition: all 0.3s;
+    .toggle {
+        width: 50px;
+        height: 25px;
+        background-color: var(--toggle-bg);
+        border-radius: 50px;
+        position: relative;
+        margin-left: 10px;
+        transition: background-color 0.3s;
     }
 
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        margin: 10px 0;
+    .toggle-circle {
+        width: 20px;
+        height: 20px;
+        background-color: var(--toggle-circle);
+        border-radius: 50%;
+        position: absolute;
+        top: 2.5px;
+        left: 2.5px;
+        transition: transform 0.3s;
     }
 
-    .nav-links a {
-        margin: 10px 0;
-        color: var(--link-color);
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-        color: var(--text-color);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    footer {
-        margin-top: auto;
+    [data-theme="dark"] .toggle-circle {
+        transform: translateX(25px);
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="header-container">
+      <!-- Hamburger Menu -->
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Dark Mode Toggle -->
+      <div class="toggle-container" id="darkModeToggle">
+        <span>Dark Mode</span>
+        <div class="toggle">
+          <div class="toggle-circle"></div>
+        </div>
+      </div>
     </div>
 
     <nav class="nav-links" id="navLinks">
@@ -82,23 +75,23 @@
   </header>
 
   <main>
-	<div class="centered-text">
-    <h1>About Me</h1>
-    <p>
-      Hi! I'm someone who’s passionate about cybersecurity and enjoys solving complex problems using data and queries.
-      With over 8 years of experience in the field, I've built and collected a variety of queries designed to help identify threats, vulnerabilities, and other insights across different environments.
-    </p>
-    <p>
-      This site is my way of giving back to the cybersecurity community by sharing some of the queries I've created or come across during my journey.
-      These queries are intended to help others in their hunt for threats, analysis of incidents, and overall enhancement of security posture.
-    </p>
-    <p>
-      Whether you're a beginner learning the ropes or a seasoned professional looking for specific insights, I hope these queries prove useful to you.
-    </p>
-    <p>
-      Thanks for visiting, and I hope you find something here that makes your work a little easier!
-    </p>
-	</div>
+    <div class="centered-text">
+      <h1>About Me</h1>
+      <p>
+        Hi! I'm someone who’s passionate about cybersecurity and enjoys solving complex problems using data and queries.
+        With over 8 years of experience in the field, I've built and collected a variety of queries designed to help identify threats, vulnerabilities, and other insights across different environments.
+      </p>
+      <p>
+        This site is my way of giving back to the cybersecurity community by sharing some of the queries I've created or come across during my journey.
+        These queries are intended to help others in their hunt for threats, analysis of incidents, and overall enhancement of security posture.
+      </p>
+      <p>
+        Whether you're a beginner learning the ropes or a seasoned professional looking for specific insights, I hope these queries prove useful to you.
+      </p>
+      <p>
+        Thanks for visiting, and I hope you find something here that makes your work a little easier!
+      </p>
+    </div>
   </main>
 
   <footer>
@@ -114,10 +107,19 @@
         navLinks.classList.toggle('active');
     });
 
-    // Apply Theme on Page Load
+    // Dark Mode Toggle Functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const currentTheme = localStorage.getItem('theme') || 'light';
     body.setAttribute('data-theme', currentTheme);
+
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener('click', () => {
+          const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme); // Save preference
+      });
+    }
   </script>
 </body>
 </html>
