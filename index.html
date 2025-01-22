@@ -12,6 +12,8 @@
         --text-color: #333333;
         --link-color: #007bff;
         --nav-bg: #f8f9fa;
+        --toggle-bg: #dddddd;
+        --toggle-circle: #ffffff;
     }
 
     /* Dark Theme Variables */
@@ -20,6 +22,8 @@
         --text-color: #f1f1f1;
         --link-color: #66b2ff;
         --nav-bg: #212529;
+        --toggle-bg: #444444;
+        --toggle-circle: #66b2ff;
     }
 
     body {
@@ -49,10 +53,36 @@
         font-size: 14px;
     }
 
-    .theme-toggle {
+    /* Toggle Button */
+    .toggle-container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        cursor: pointer;
+    }
+
+    .toggle {
+        width: 50px;
+        height: 25px;
+        background-color: var(--toggle-bg);
+        border-radius: 50px;
+        position: relative;
+        margin-left: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .toggle-circle {
+        width: 20px;
+        height: 20px;
+        background-color: var(--toggle-circle);
+        border-radius: 50%;
+        position: absolute;
+        top: 2.5px;
+        left: 2.5px;
+        transition: transform 0.3s;
+    }
+
+    [data-theme="dark"] .toggle-circle {
+        transform: translateX(25px);
     }
   </style>
 </head>
@@ -68,9 +98,11 @@
         </ul>
       </nav>
       <!-- Dark Mode Toggle -->
-      <div class="theme-toggle">
-        <label class="form-check-label me-2" for="darkModeSwitch">Dark Mode</label>
-        <input type="checkbox" id="darkModeSwitch" class="form-check-input">
+      <div class="toggle-container" id="darkModeToggle">
+        <span>Dark Mode</span>
+        <div class="toggle">
+          <div class="toggle-circle"></div>
+        </div>
       </div>
     </div>
   </header>
@@ -88,19 +120,18 @@
 
   <script>
     // Dark Mode Toggle
-    const toggleSwitch = document.getElementById('darkModeSwitch');
+    const toggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
     // Check if user has a saved theme preference
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.setAttribute('data-theme', currentTheme);
-        toggleSwitch.checked = currentTheme === 'dark';
     }
 
-    // Event Listener for Theme Toggle
-    toggleSwitch.addEventListener('change', () => {
-        const theme = toggleSwitch.checked ? 'dark' : 'light';
+    // Event Listener for Toggle
+    toggle.addEventListener('click', () => {
+        const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         body.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme); // Save preference
     });
