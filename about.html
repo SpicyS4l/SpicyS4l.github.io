@@ -1,50 +1,67 @@
----
-layout: default
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About</title>
-  <meta name="description" content="About the creator of this website">
-  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
   <header>
-    <nav>
-      <ul>
-        <li><a href="{{ "/" | relative_url }}">Home</a></li>
-        <li><a href="{{ "/cves.html" | relative_url }}">CVE's</a></li>
-        <li><a href="{{ "/kql-queries.html" | relative_url }}">KQL Queries</a></li>
-        <li><a href="{{ "/about.html" | relative_url }}">About</a></li>
-      </ul>
-    </nav>
+    <div class="container d-flex justify-content-between">
+      <nav>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/cves.html">CVE's</a></li>
+          <li class="nav-item"><a class="nav-link" href="/kql-queries.html">KQL Queries</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+        </ul>
+      </nav>
+      <!-- Dark Mode Toggle -->
+      <div class="toggle-container" id="darkModeToggle">
+        <span>Dark Mode</span>
+        <div class="toggle">
+          <div class="toggle-circle"></div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h1>About Me</h1>
-      <p>
-        Hi! I'm someone who’s passionate about cybersecurity and enjoys solving complex problems using data and queries. 
-        With over 8 years of experience in the field, I've built and collected a variety of queries designed to help identify threats, vulnerabilities, and other insights across different environments.
-      </p>
-      <p>
-        This site is my way of giving back to the cybersecurity community by sharing some of the queries I've created or come across during my journey. 
-        These queries are intended to help others in their hunt for threats, analysis of incidents, and overall enhancement of security posture.
-      </p>
-      <p>
-        Whether you're a beginner learning the ropes or a seasoned professional looking for specific insights, I hope these queries prove useful to you.
-      </p>
-      <p>
-        Thanks for visiting, and I hope you find something here that makes your work a little easier!
-      </p>
-    </section>
+  <main class="container mt-5">
+    <h1>About Me</h1>
+    <p>
+      Hi! I'm someone who’s passionate about cybersecurity and enjoys solving complex problems using data and queries.
+      With over 8 years of experience in the field, I've built and collected a variety of queries designed to help identify threats, vulnerabilities, and other insights across different environments.
+    </p>
+    <p>
+      This site is my way of giving back to the cybersecurity community by sharing some of the queries I've created or come across during my journey.
+      These queries are intended to help others in their hunt for threats, analysis of incidents, and overall enhancement of security posture.
+    </p>
+    <p>
+      Whether you're a beginner learning the ropes or a seasoned professional looking for specific insights, I hope these queries prove useful to you.
+    </p>
+    <p>
+      Thanks for visiting, and I hope you find something here that makes your work a little easier!
+    </p>
   </main>
 
   <footer>
     <p>Created by <a href="https://www.linkedin.com/in/nery-salguero/" target="_blank">Nery Salguero</a></p>
   </footer>
+
+  <script>
+    // Apply Theme on Page Load
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+
+    // Toggle Theme
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.addEventListener('click', () => {
+        const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme); // Save preference
+    });
+  </script>
 </body>
 </html>
