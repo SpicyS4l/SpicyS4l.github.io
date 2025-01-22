@@ -119,17 +119,13 @@
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById('darkModeToggle');
+    // Apply Theme on Page Load
     const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
 
-    // Check if user has a saved theme preference
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        body.setAttribute('data-theme', currentTheme);
-    }
-
-    // Event Listener for Toggle
+    // Toggle Theme
+    const toggle = document.getElementById('darkModeToggle');
     toggle.addEventListener('click', () => {
         const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         body.setAttribute('data-theme', theme);
