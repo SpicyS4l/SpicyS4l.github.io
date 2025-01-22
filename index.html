@@ -5,31 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cybersecurity KQL Queries</title>
   <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    /* Center everything */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        margin: 10px 0;
+    }
+
+    .hamburger div {
+        width: 30px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 4px 0;
+        transition: all 0.3s;
+    }
+
+    /* Dropdown Menu */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+        color: var(--link-color);
+        text-decoration: none;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--text-color);
+    }
+
+    /* Show links when active */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Dark Mode Toggle */
+    .toggle-container {
+        margin-top: 20px;
+    }
+
+    footer {
+        margin-top: auto;
+        text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container d-flex justify-content-between">
-      <nav>
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/cves.html">CVE's</a></li>
-          <li class="nav-item"><a class="nav-link" href="/kql-queries.html">KQL Queries</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
-        </ul>
-      </nav>
-      <!-- Dark Mode Toggle -->
-      <div class="toggle-container" id="darkModeToggle">
-        <span>Dark Mode</span>
-        <div class="toggle">
-          <div class="toggle-circle"></div>
-        </div>
-      </div>
+    <!-- Hamburger Menu -->
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+
+    <!-- Dropdown Navigation -->
+    <nav class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/cves.html">CVE's</a>
+      <a href="/kql-queries.html">KQL Queries</a>
+      <a href="/about.html">About</a>
+    </nav>
   </header>
 
-  <main class="container mt-5">
+  <main>
     <h1>Welcome to Cybersecurity KQL Queries</h1>
     <p>Explore KQL queries to assist in hunting CVEs and enhancing your cybersecurity practices.</p>
+    <h2>CVE's</h2>
+    <p>Check out the list of CVEs, including detection guidance for <a href="/cve-2025-21298.html">CVE-2025-21298</a>.</p>
   </main>
 
   <footer>
@@ -44,10 +112,20 @@
 
     // Toggle Theme
     const toggle = document.getElementById('darkModeToggle');
-    toggle.addEventListener('click', () => {
-        const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        body.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme); // Save preference
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+          const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme); // Save preference
+      });
+    }
+
+    // Hamburger Menu Functionality
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
     });
   </script>
 </body>
