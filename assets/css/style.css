@@ -1,4 +1,4 @@
-/* Default Light Theme */
+/* === Global Variables === */
 :root {
     --bg-color: #ffffff;
     --text-color: #333333;
@@ -8,22 +8,28 @@
     --toggle-circle: #ffffff;
 }
 
-/* Dark Theme Variables */
 [data-theme="dark"] {
     --bg-color: #121212;
-    --text-color: #f1f1f1;
+    --text-color: #e0e0e0; /* Light text for better contrast */
     --link-color: #66b2ff;
     --nav-bg: #212529;
     --toggle-bg: #444444;
     --toggle-circle: #66b2ff;
 }
 
-/* General Styles */
+/* === Global Styles === */
 body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 a {
@@ -35,18 +41,57 @@ a:hover {
     text-decoration: underline;
 }
 
+/* === Header Styles === */
 header {
+    width: 100%;
     background-color: var(--nav-bg);
-    padding: 15px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-footer {
+/* Hamburger Menu */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 4px 0;
+    transition: all 0.3s;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    margin: 10px 0;
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
 }
 
-/* Toggle Button */
+.nav-links a {
+    margin: 10px 0;
+    font-size: 18px;
+    color: var(--link-color);
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-color);
+}
+
+/* Show nav-links when active */
+.nav-links.active {
+    display: flex;
+}
+
+/* === Dark Mode Toggle === */
 .toggle-container {
     display: flex;
     align-items: center;
@@ -78,14 +123,22 @@ footer {
     transform: translateX(25px);
 }
 
-/* === Reusable Components === */
+/* === Centered Text Styles === */
 .centered-text {
     max-width: 600px;     /* Restrict the width */
     margin: 0 auto;       /* Center horizontally */
     text-align: justify;  /* Justify text alignment */
     line-height: 1.6;     /* Add line spacing for readability */
     padding: 20px;        /* Add padding for better spacing */
-    background-color: #fff;
+    background-color: var(--bg-color); /* Adapt to light/dark theme */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
     border-radius: 8px;   /* Optional rounded corners */
+}
+
+/* === Footer Styles === */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
 }
