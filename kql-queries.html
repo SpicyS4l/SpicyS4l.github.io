@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KQL Queries</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <!-- Hamburger Menu -->
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Dark Mode Toggle -->
+      <div class="toggle-container" id="darkModeToggle">
+        <span>Dark Mode</span>
+        <div class="toggle">
+          <div class="toggle-circle"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/cves.html">CVE's</a>
+      <a href="/kql-queries.html">KQL Queries</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="centered-text">
+      <h1>KQL Queries</h1>
+      <p>Here are some KQL queries for general threat hunting and security monitoring.</p>
+      
+      <ul>
+        <li><a href="/password-spray.html">Password-Spraying</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>Created by <a href="https://www.linkedin.com/in/nery-salguero/" target="_blank">Nery Salguero</a></p>
+  </footer>
+
+  <script>
+    // Hamburger Menu Functionality
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Dark Mode Toggle Functionality
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener('click', () => {
+          const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme); // Save preference
+      });
+    }
+  </script>
+</body>
+</html>
