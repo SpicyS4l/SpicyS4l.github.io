@@ -10,7 +10,7 @@
 
 [data-theme="dark"] {
     --bg-color: #121212;
-    --text-color: #e0e0e0; /* Lighter text for better contrast */
+    --text-color: #e0e0e0;
     --link-color: #66b2ff;
     --nav-bg: #212529;
     --toggle-bg: #444444;
@@ -46,7 +46,7 @@ header {
     background-color: var(--nav-bg);
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Ensures left-aligned hamburger & right-aligned toggle */
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -90,20 +90,25 @@ header {
     display: flex;
 }
 
-/* === Dark Mode Toggle === */
+/* === Dark Mode Toggle with Ninja Icon === */
 .toggle-container {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
+.toggle-container span {
+    margin-right: 8px; /* Space between ninja icon and toggle */
+    font-size: 16px;
+}
+
+/* Toggle Switch */
 .toggle {
     width: 50px;
     height: 25px;
     background-color: var(--toggle-bg);
     border-radius: 50px;
     position: relative;
-    margin-left: 10px;
     transition: background-color 0.3s;
 }
 
@@ -124,10 +129,10 @@ header {
 
 /* === Main Content Styling === */
 main {
-    margin-top: 80px; /* Ensure content is pushed down */
+    margin-top: 80px; /* Prevents content from being cut off */
     padding: 20px;
     width: 100%;
-    max-width: 900px; /* Keep content from stretching too wide */
+    max-width: 900px;
 }
 
 /* === Centered Text === */
@@ -148,14 +153,14 @@ main {
     color: #ffffff;
     padding: 10px;
     border-radius: 5px;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    max-width: 100%; /* Prevents code blocks from exceeding page width */
+    overflow-x: auto; /* Enables horizontal scrolling if necessary */
+    max-width: 100%;
 }
 
 .query-container pre {
-    white-space: pre-wrap; /* Ensures code wraps inside the box */
-    word-wrap: break-word; /* Prevents text from overflowing */
-    overflow-x: auto; /* Enables scrolling only inside the code box */
+    white-space: pre-wrap; /* Ensures text wraps */
+    word-wrap: break-word;
+    overflow-x: auto;
 }
 
 /* === Footer === */
@@ -180,5 +185,9 @@ footer {
 
     main {
         padding: 15px;
+    }
+
+    .toggle-container span {
+        font-size: 14px;
     }
 }
