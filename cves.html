@@ -5,88 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CVE's</title>
   <link rel="stylesheet" href="/assets/css/style.css">
-  <style>
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    header {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        margin: 10px 0;
-    }
-
-    .hamburger div {
-        width: 30px;
-        height: 3px;
-        background-color: var(--text-color);
-        margin: 4px 0;
-        transition: all 0.3s;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        margin: 10px 0;
-    }
-
-    .nav-links a {
-        margin: 10px 0;
-        color: var(--link-color);
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-        color: var(--text-color);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    footer {
-        margin-top: auto;
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
 
-    <nav class="nav-links" id="navLinks">
-      <a href="/">Home</a>
-      <a href="/cves.html">CVE's</a>
-      <a href="/kql-queries.html">KQL Queries</a>
-      <a href="/about.html">About</a>
-    </nav>
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <header>
+    <div class="header-container">
+      <!-- Hamburger Menu -->
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Dark Mode Toggle with Ninja Icon -->
+      <div class="toggle-container" id="darkModeToggle">
+        <div class="toggle">
+          <div class="toggle-circle"></div>
+        </div>
+        <span class="ninja-icon">🥷</span>
+      </div>
+    </div>
   </header>
 
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" id="closeSidebar">&times;</span>
+    <a href="/">Home</a>
+    <a href="/cves.html">CVE's</a>
+    <a href="/kql-queries.html">KQL Queries</a>
+    <a href="/about.html">About</a>
+  </div>
+
   <main>
-    <h1>CVE's List</h1>
-    <p>Here is a list of CVEs with detailed detection and mitigation guidance:</p>
-    <ul>
-      <li><a href="/cve-2025-21298.html">CVE-2025-21298 Detection Guidance</a></li>
-    </ul>
+    <div class="centered-text">
+      <h1>CVE's List</h1>
+      <p>Here is a list of CVEs with detailed detection and mitigation guidance:</p>
+      <ul>
+        <li><a href="/cve-2025-21298.html">CVE-2025-21298 Detection Guidance</a></li>
+      </ul>
+    </div>
   </main>
 
   <footer>
@@ -94,18 +54,40 @@
   </footer>
 
   <script>
-    // Hamburger Menu Functionality
+    // Sidebar Navigation
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const overlay = document.getElementById('overlay');
 
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
     });
 
-    // Apply Theme on Page Load
+    closeSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const currentTheme = localStorage.getItem('theme') || 'light';
     body.setAttribute('data-theme', currentTheme);
+
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener('click', () => {
+          const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+      });
+    }
   </script>
 </body>
 </html>
