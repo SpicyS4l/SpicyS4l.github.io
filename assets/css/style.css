@@ -95,11 +95,7 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
-}
-
-.toggle-container span {
-    margin-right: 8px; /* Space between ninja icon and toggle */
-    font-size: 16px;
+    gap: 8px; /* Space between toggle and icon */
 }
 
 /* Toggle Switch */
@@ -123,8 +119,14 @@ header {
     transition: transform 0.3s;
 }
 
+/* Moves circle inside the toggle when dark mode is enabled */
 [data-theme="dark"] .toggle-circle {
     transform: translateX(25px);
+}
+
+/* Ninja Icon Styling */
+.ninja-icon {
+    font-size: 20px; /* Adjust size */
 }
 
 /* === Main Content Styling === */
