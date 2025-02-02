@@ -222,6 +222,15 @@ main {
     color: var(--link-color);
 }
 
+.cve-list a {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
 /* === Code Block Styling === */
 .query-container {
     background-color: #1e1e1e;
