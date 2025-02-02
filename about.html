@@ -5,49 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About</title>
   <link rel="stylesheet" href="/assets/css/style.css">
-  <style>
-    /* Additional styling for alignment */
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 0 20px;
-    }
-
-    .toggle-container {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .toggle {
-        width: 50px;
-        height: 25px;
-        background-color: var(--toggle-bg);
-        border-radius: 50px;
-        position: relative;
-        margin-left: 10px;
-        transition: background-color 0.3s;
-    }
-
-    .toggle-circle {
-        width: 20px;
-        height: 20px;
-        background-color: var(--toggle-circle);
-        border-radius: 50%;
-        position: absolute;
-        top: 2.5px;
-        left: 2.5px;
-        transition: transform 0.3s;
-    }
-
-    [data-theme="dark"] .toggle-circle {
-        transform: translateX(25px);
-    }
-  </style>
 </head>
 <body>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
   <header>
     <div class="header-container">
       <!-- Hamburger Menu -->
@@ -57,22 +20,24 @@
         <div></div>
       </div>
 
-      <!-- Dark Mode Toggle -->
+      <!-- Dark Mode Toggle with Ninja Icon -->
       <div class="toggle-container" id="darkModeToggle">
-        <span>Dark Mode</span>
         <div class="toggle">
           <div class="toggle-circle"></div>
         </div>
+        <span class="ninja-icon">🥷</span>
       </div>
     </div>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="/">Home</a>
-      <a href="/cves.html">CVE's</a>
-      <a href="/kql-queries.html">KQL Queries</a>
-      <a href="/about.html">About</a>
-    </nav>
   </header>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" id="closeSidebar">&times;</span>
+    <a href="/">Home</a>
+    <a href="/cves.html">CVE's</a>
+    <a href="/kql-queries.html">KQL Queries</a>
+    <a href="/about.html">About</a>
+  </div>
 
   <main>
     <div class="centered-text">
@@ -99,15 +64,28 @@
   </footer>
 
   <script>
-    // Hamburger Menu Functionality
+    // Sidebar Navigation
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const overlay = document.getElementById('overlay');
 
     hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
     });
 
-    // Dark Mode Toggle Functionality
+    closeSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -117,7 +95,7 @@
       darkModeToggle.addEventListener('click', () => {
           const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
           body.setAttribute('data-theme', theme);
-          localStorage.setItem('theme', theme); // Save preference
+          localStorage.setItem('theme', theme);
       });
     }
   </script>
