@@ -222,6 +222,7 @@ main {
     color: var(--link-color);
 }
 
+/* CVE List Styling */
 .cve-list a {
     display: block;
     font-size: 1.2rem;
