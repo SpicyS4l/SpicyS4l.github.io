@@ -51,7 +51,66 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Hamburger Menu */
+/* === Sidebar Navigation === */
+.sidebar {
+    height: 100%;
+    width: 0; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--nav-bg);
+    overflow-x: hidden;
+    transition: 0.3s ease-in-out;
+    padding-top: 60px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--link-color);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: var(--text-color);
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Overlay Effect */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 98;
+}
+
+/* Show sidebar when active */
+.sidebar.active {
+    width: 250px; /* Sidebar expands to 250px */
+}
+
+/* Show overlay when sidebar is active */
+.overlay.active {
+    display: block;
+}
+
+/* === Hamburger Menu === */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -66,46 +125,13 @@ header {
     transition: all 0.3s;
 }
 
-/* Navigation Menu */
-.nav-links {
-    display: none;
-    flex-direction: column;
-    margin: 10px 0;
-    text-align: center;
-}
-
-.nav-links a {
-    margin: 10px 0;
-    font-size: 18px;
-    color: var(--link-color);
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--text-color);
-}
-
-/* Show navigation when active */
-.nav-links.active {
-    display: flex;
-}
-
-/* Header Layout: Hamburger on the Left, Dark Mode Toggle on the Right */
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Ensures left-aligned hamburger & right-aligned toggle */
-    align-items: center;
-    width: 100%;
-    padding: 10px 20px;
-}
-
-/* Ensure the Toggle is Pushed to the Right */
+/* === Dark Mode Toggle with Ninja Icon === */
 .toggle-container {
     display: flex;
     align-items: center;
     cursor: pointer;
-    gap: 8px; /* Space between toggle and ninja icon */
-    margin-left: auto; /* Pushes toggle to the right */
+    gap: 8px; /* Space between toggle and icon */
+    margin-left: auto;
 }
 
 /* Toggle Switch */
@@ -136,9 +162,8 @@ header {
 
 /* Ninja Icon Styling */
 .ninja-icon {
-    font-size: 25px;
+    font-size: 20px;
 }
-
 
 /* === Main Content Styling === */
 main {
