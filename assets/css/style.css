@@ -130,7 +130,7 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
-    gap: 8px; /* Space between toggle and icon */
+    gap: 8px;
     margin-left: auto;
 }
 
@@ -162,7 +162,7 @@ header {
 
 /* Ninja Icon Styling */
 .ninja-icon {
-    font-size: 25px;
+    font-size: 25px; /* Fixed to 25px */
 }
 
 /* === Main Content Styling === */
@@ -171,18 +171,44 @@ main {
     padding: 20px;
     width: 100%;
     max-width: 900px;
+    text-align: center;
 }
 
-/* === Centered Text === */
-.centered-text {
-    max-width: 600px;
+/* === Fix Title Formatting === */
+.centered-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: normal; /* Ensure spacing between words is natural */
+}
+
+/* Fix spacing between words */
+.centered-text h1 span {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+/* General Text Formatting */
+.centered-text p {
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 90%;
     margin: 0 auto;
-    text-align: justify;
-    line-height: 1.6;
-    padding: 20px;
-    background-color: var(--bg-color);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+}
+
+/* Section Headers */
+.centered-text h2 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Fix link positioning */
+.centered-text a {
+    font-size: 1rem;
+    color: var(--link-color);
 }
 
 /* === Code Block Styling === */
