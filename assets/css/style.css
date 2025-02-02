@@ -90,12 +90,22 @@ header {
     display: flex;
 }
 
-/* === Dark Mode Toggle with Ninja Icon === */
+/* Header Layout: Hamburger on the Left, Dark Mode Toggle on the Right */
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Ensures left-aligned hamburger & right-aligned toggle */
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+/* Ensure the Toggle is Pushed to the Right */
 .toggle-container {
     display: flex;
     align-items: center;
     cursor: pointer;
-    gap: 8px; /* Space between toggle and icon */
+    gap: 8px; /* Space between toggle and ninja icon */
+    margin-left: auto; /* Pushes toggle to the right */
 }
 
 /* Toggle Switch */
@@ -119,15 +129,16 @@ header {
     transition: transform 0.3s;
 }
 
-/* Moves circle inside the toggle when dark mode is enabled */
+/* Moves the toggle when dark mode is enabled */
 [data-theme="dark"] .toggle-circle {
     transform: translateX(25px);
 }
 
 /* Ninja Icon Styling */
 .ninja-icon {
-    font-size: 20px; /* Adjust size */
+    font-size: 25px;
 }
+
 
 /* === Main Content Styling === */
 main {
